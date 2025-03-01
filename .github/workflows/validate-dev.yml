@@ -1,5 +1,5 @@
 name: Github actions test-workflows
-run-name: susmitha matturi is running the github actions
+run-name: ${{github.actor}} is running the github actions
 
 ## Basically pipeline will run on two types of events
 
