@@ -1,4 +1,4 @@
-name: Github actions test-workflows
+name: Dev pipeline
 run-name: ${{github.actor}} is running the github actions
 
 ## Basically pipeline will run on two types of events
@@ -12,11 +12,15 @@ jobs:
     steps:
       - run: echo "This is my first-job"
         name: "This is my first job message"
-
+      - name: checkout code
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Install npm
+        run: npm install
   clean-up:
     runs-on: ubuntu-latest
 
     steps:
       - run: echo "This is my second job"
         name: echo "This is my second job message"
-
