@@ -18,10 +18,16 @@ jobs:
           fetch-depth: 0
       - name: Install Salesforce CLI
         run: npm install @salesforce/cli --global
+
+      - name: Decrypt the server.key.enc file
+        run: openssl enc -nosalt -aes-256-cbc -d -in assets/dev/server.key.enc -out assets/dev/server_key -base64 -k ${{ secrets.KEY }} -iv ${{ secrets.IV }}
+
       - name: Authorize the salesforce org using the JWT authentication through connected app
-        run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file assets/dev/server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwIqmuYdGF2VZE2hx0WBUvs94DRjMcClTguzJoJaGT9Ekgv2De2OBa0Esq2jOM --alias ci-org --set-default --instance-url https://login.salesforce.com
+        run: sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file assets/dev/server.key --client-id ${{ secrets.SF_CLIENT_ID }} --alias ci-org --set-default --instance-url ${{ secrets.SF_INSTANCE_URL }}
+
       - name: Display the ORG User Information
         run: sf org display user -o ci-org
+
   clean-up:
     runs-on: ubuntu-latest
 
