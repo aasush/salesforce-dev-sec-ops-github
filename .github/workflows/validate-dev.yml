@@ -20,7 +20,7 @@ jobs:
         run: npm install @salesforce/cli --global
 
       - name: Decrypt the server.key.enc file
-        run: openssl enc -nosalt -aes-256-cbc -d -in assets/dev/server.key.enc -out assets/dev/server_key -base64 -k ${{ secrets.KEY }} -iv ${{ secrets.IV }}
+        run: openssl enc -nosalt -aes-256-cbc -d -in assets/dev/server.key.enc -out assets/dev/server_key -base64 -K ${{ secrets.KEY }} -iv ${{ secrets.IV }}
 
       - name: Authorize the salesforce org using the JWT authentication through connected app
         run: sf org login jwt --username ${{ secrets.SF_USERNAME }} --jwt-key-file assets/dev/server.key --client-id ${{ secrets.SF_CLIENT_ID }} --alias ci-org --set-default --instance-url ${{ secrets.SF_INSTANCE_URL }}
