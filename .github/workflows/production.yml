@@ -1,5 +1,5 @@
 name: PRODUCTION PIPELINE
-run-name: ${{github_actor}} is running the github actions
+run-name: ${{github.actor}} is running the github actions
 
 ## Basically pipeline will run on two types of events
 
