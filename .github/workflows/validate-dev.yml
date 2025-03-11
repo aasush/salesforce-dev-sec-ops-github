@@ -20,7 +20,7 @@ jobs:
         run: npm install @salesforce/cli --global
 
       - name: Authorize the salesforce org using the JWT authentication through connected app
-        run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file assets/server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwIqmuYdGF2VZE2hx0WBUvs94DRjMcClTguzJoJaGT9Ekgv2De2OBa0Esq2jOM --alias ci-org --set-default --instance-url https://login.salesforce.com
+        run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file assets/server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwIpNKyF1ngekWMZpXHp4zUTvrB_VVTUtepC1XAojvuU6Sk0BMPUSymAW3L33t --alias ci-org --set-default --instance-url https://login.salesforce.com
 
       - name: Display the ORG User Information
         run: sf org display user -o ci-org
