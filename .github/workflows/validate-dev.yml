@@ -18,6 +18,10 @@ jobs:
           fetch-depth: 0
       - name: Install npm
         run: npm install
+      - name: Authorize the salesforce org using the JWT authentication
+        run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file assets/dev/server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwIqmuYdGF2VZE2hx0WBUvs94DRjMcClTguzJoJaGT9Ekgv2De2OBa0Esq2jOM --alias ci-org --set-default --instance-url https://login.salesforce.com
+      - name: Display the ORG User Information
+        run: sf org display user -o ci-org
   clean-up:
     runs-on: ubuntu-latest
 
