@@ -12,6 +12,7 @@ on:
         - 'force-app\**'      
 jobs:
   build-and-deploy: # Name of the JOB
+  environment: dev
     runs-on: ubuntu-latest # github hosted
 
     steps:
