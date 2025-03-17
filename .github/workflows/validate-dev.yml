@@ -4,14 +4,21 @@ run-name: ${{github.actor}} is running the github actions
 ## Basically pipeline will run on two types of events
 
 on: 
-  push: 
-    paths: 
-      - 'force-app\**'
-  pull_request:
-    types: [opened, reopened, edited, synchronize]
+  push:
     paths:
-      - 'force-app\**'
-
+      - 'force-app/**'
+    branches:
+      - feature/*
+      - bugfix/*
+      - hotfix/*
+  pull_request:
+    types: [opened, synchronize, reopened, closed, edited]
+    paths:
+        - 'force-app\**'
+    branches:
+      - main
+      - uat
+      - develop
 jobs:
   build-and-deploy: # Name of the JOB
     runs-on: ubuntu-latest # github hosted
