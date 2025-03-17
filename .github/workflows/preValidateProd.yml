@@ -1,4 +1,4 @@
-name: Pre Validate to Production Org
+name: Pre Validate to Production Sandbox
 run-name: ${{github.actor}} is running the github actions
 
 ## Basically pipeline will run on two types of events
