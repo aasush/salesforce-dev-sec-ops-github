@@ -34,7 +34,7 @@ jobs:
         run: npm install @salesforce/cli --global
 
       - name: Authorize the salesforce org using the JWT authentication through connected apps
-        run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file assets/server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwIpNKyF1ngekWMZpXHp4zUTvrB_VVTUtepC1XAojvuU6Sk0BMPUSymAW3L33t --alias ci-org --set-default --instance-url https://dell93-dev-ed.develop.my.salesforce.com
+        run: sf org login jwt --username ${{secrets.SF_USERNAME}} --jwt-key-file assets/server.key --client-id ${{secrets.SF_CLIENT_ID}} --alias ci-org --set-default --instance-url ${{secrets.SF_INSTANCE_URL}}
       
       - name: Deploy the code to salesforce
         run: sf project deploy start --source-dir force-app --target-org ci-org
