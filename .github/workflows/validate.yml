@@ -1,0 +1,39 @@
+name: Code Validation and Deployment
+run-name: ${{github.actor}} is running the github actions
+
+## Basically pipeline will run on two types of events
+
+on: 
+  push:
+    paths:
+      - 'force-app/**'
+    branches:
+      - feature/*
+      - bugfix/*
+      - hotfix/*
+      
+jobs:
+  build-and-deploy: # Name of the JOB
+    runs-on: ubuntu-latest # github hosted
+
+    steps:
+      - run: echo "This is my first-job"
+        name: "This is my first job message"
+      - name: checkout code
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Install Salesforce CLI
+        run: npm install @salesforce/cli --global
+
+      - name: Authorize the salesforce org using the JWT authentication through connected apps
+        run: sf org login jwt --username ${{secrets.SF_USERNAME}} --jwt-key-file assets/server.key --client-id ${{secrets.SF_CLIENT_ID}} --alias ci-org --set-default --instance-url ${{secrets.SF_INSTANCE_URL}}
+      
+      - name: Deploy the code to salesforce
+        run: sf project deploy start --source-dir force-app --target-org ci-org
+  clean-up:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "This is my second job"
+        name: echo "This is my second job message"

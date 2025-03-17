@@ -1,24 +1,15 @@
-name: Dev pipeline
+name: Pre Validate to Production Org
 run-name: ${{github.actor}} is running the github actions
 
 ## Basically pipeline will run on two types of events
 
-on: 
-  push:
-    paths:
-      - 'force-app/**'
-    branches:
-      - feature/*
-      - bugfix/*
-      - hotfix/*
+on:
   pull_request:
-    types: [opened, synchronize, reopened, closed, edited]
-    paths:
-        - 'force-app\**'
+    types: [opened, edited, closed]
     branches:
-      - main
-      - uat
-      - develop
+        -main
+    paths:
+        - 'force-app\**'      
 jobs:
   build-and-deploy: # Name of the JOB
     runs-on: ubuntu-latest # github hosted
