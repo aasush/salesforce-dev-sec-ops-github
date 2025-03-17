@@ -7,10 +7,18 @@ on:
   push:
     paths:
       - 'force-app/**'
+    branches:
+      - feature/*
+      - bugfix/*
+      - hotfix/*
   pull_request:
     types: [opened, synchronize, reopened, closed]
     paths:
         - 'force-app\**'
+    branches:
+      - main
+      - uat
+      - develop
 jobs:
   build-and-deploy: # Name of the JOB
     runs-on: ubuntu-latest # github hosted
