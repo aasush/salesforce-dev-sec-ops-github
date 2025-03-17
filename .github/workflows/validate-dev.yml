@@ -1,9 +1,16 @@
-name: Github actions test-workflows
-run-name: susmitha matturi is running the github actions
+name: Dev pipeline
+run-name: ${{github.actor}} is running the github actions
 
 ## Basically pipeline will run on two types of events
 
-on: [push, pull_request]
+on: 
+  push: 
+    paths: 
+      - 'force-app\**'
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+    paths:
+      - 'force-app\**'
 
 jobs:
   build-and-deploy: # Name of the JOB
@@ -12,11 +19,21 @@ jobs:
     steps:
       - run: echo "This is my first-job"
         name: "This is my first job message"
+      - name: checkout code
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Install Salesforce CLI
+        run: npm install @salesforce/cli --global
 
+      - name: Authorize the salesforce org using the JWT authentication through connected apps
+        run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file assets/server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwIpNKyF1ngekWMZpXHp4zUTvrB_VVTUtepC1XAojvuU6Sk0BMPUSymAW3L33t --alias ci-org --set-default --instance-url https://dell93-dev-ed.develop.my.salesforce.com
+      
+      - name: Deploy the code to salesforce
+        run: sf project deploy start --source-dir force-app --target-org ci-org
   clean-up:
     runs-on: ubuntu-latest
 
     steps:
       - run: echo "This is my second job"
         name: echo "This is my second job message"
-
