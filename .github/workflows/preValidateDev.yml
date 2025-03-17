@@ -11,8 +11,8 @@ on:
     paths:
         - 'force-app\**'      
 jobs:
-  build-and-deploy: # Name of the JOB
-    runs-on: ubuntu-latest # github hosted
+  build-and-deploy: 
+    runs-on: ubuntu-latest 
     environment: dev
     steps:
       - run: echo "This is my first-job"
