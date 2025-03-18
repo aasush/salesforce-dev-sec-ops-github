@@ -4,5 +4,5 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
-  "vlocity.sfdxUsername": "sumatt1617@gmail.com"
+  "vlocity.sfdxUsername": "dev-org-sandbox"
 }
