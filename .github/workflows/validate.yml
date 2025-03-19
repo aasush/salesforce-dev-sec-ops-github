@@ -28,7 +28,7 @@ jobs:
         run: npm install sfdx-cli --global
       
       - name: decrypt the server.key file
-        run: openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -k 6C0FDE40C38E5B3DDA31CC84CB398F7121AA7384BD644B6452448FF5F74618E7 -iv 59CA5C7559F8CF9DF3DE9C7672FE331B
+        run: openssl enc -base64 -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -d -in assets/server.key.enc -out assets/server.key -k 6C0FDE40C38E5B3DDA31CC84CB398F7121AA7384BD644B6452448FF5F74618E7 -iv 59CA5C7559F8CF9DF3DE9C7672FE331B
 
       - name: Authorize the salesforce org using the JWT authentication through connected apps
         run: sf org login jwt --username ${{secrets.SF_USERNAME}} --jwt-key-file assets/server.key --client-id ${{secrets.SF_CLIENT_ID}} --alias ci-org --set-default --instance-url ${{secrets.SF_INSTANCE_URL}}
