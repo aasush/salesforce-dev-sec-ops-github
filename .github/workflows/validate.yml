@@ -28,7 +28,7 @@ jobs:
         run: npm install sfdx-cli --global
       
       - name: Authorize the salesforce org using the JWT authentication through connected apps
-        run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwItJeZKUhnwWlBAzqbOwBSK5Fc4GmzzpH7N9JKGrmPzeA_xN3Ax7d2Yx6OMUp --set-default --alias ci-org --instance-url https://login.salesforce.com
+        run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file assets/server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwItJeZKUhnwWlBAzqbOwBSK5Fc4GmzzpH7N9JKGrmPzeA_xN3Ax7d2Yx6OMUp --set-default --alias ci-org --instance-url https://login.salesforce.com
       ##- name: validate the code to salesforce
       ##  run: sf project deploy validate --source-dir force-app --target-org ci-org  
 
