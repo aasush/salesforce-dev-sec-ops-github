@@ -14,7 +14,7 @@ on:
       
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu
 
     steps:
       - run: echo "This is my first-job"
@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install SFDX CLI
-        run: npm install sfdx-cli --global
+        run: install sfdx-cli --global
       
       - name: Authorize the salesforce org using the JWT authentication through connected apps
         run: sf org login jwt --username sumatt1617@gmail.com --jwt-key-file server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwItJeZKUhnwWlBAzqbOwBSK5Fc4GmzzpH7N9JKGrmPzeA_xN3Ax7d2Yx6OMUp --alias ci-org --set-default --instance-url https://login.salesforce.com
