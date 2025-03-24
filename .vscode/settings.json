@@ -4,5 +4,9 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
+<<<<<<< HEAD
   "vlocity.sfdxUsername": "sumatt1617-x7c2@force.com"
+=======
+  "vlocity.sfdxUsername": "sumatt1617@gmail.com"
+>>>>>>> 6e3be51d1fa7c14800cd9701fd743361d39507c6
 }
