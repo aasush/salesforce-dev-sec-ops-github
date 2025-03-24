@@ -14,7 +14,7 @@ on:
       
 jobs:
   build-and-deploy:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - run: echo "This is my first-job"
@@ -26,7 +26,7 @@ jobs:
 
       - name: Install SFDX CLI
         run: npm install sfdx-cli --global
-        
+
       - name: display user
         run: sfdx org display user
       
