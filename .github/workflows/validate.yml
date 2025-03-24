@@ -28,7 +28,8 @@ jobs:
         run: npm install sfdx-cli --global
 
       - name: display user
-        run: sfdx org display user
+        run: sf org display user -o ci-org --json --verbose
+        
       
       - name: Authorize the salesforce org using the JWT authentication through connected apps
         run: sfdx org login jwt --username sumatt1617@gmail.com --jwt-key-file assets/server.key --client-id 3MVG9k02hQhyUgQCWX29C0dSwItJeZKUhnwWlBAzqbOwBSK5Fc4GmzzpH7N9JKGrmPzeA_xN3Ax7d2Yx6OMUp --alias ci-org --set-default --instance-url https://login.salesforce.com
